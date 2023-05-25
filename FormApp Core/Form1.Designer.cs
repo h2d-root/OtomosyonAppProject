@@ -43,6 +43,7 @@
             KaydetBTN = new Button();
             DegistirBTN = new Button();
             SilBTN = new Button();
+            GirisSayfasiBTN = new Button();
             musteriBilgileriGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MusterilerDGV).BeginInit();
             SuspendLayout();
@@ -181,7 +182,7 @@
             // 
             // geriBTN
             // 
-            geriBTN.Location = new Point(656, 54);
+            geriBTN.Location = new Point(656, 68);
             geriBTN.Name = "geriBTN";
             geriBTN.Size = new Size(60, 55);
             geriBTN.TabIndex = 2;
@@ -208,7 +209,7 @@
             // 
             // IleriBTN
             // 
-            IleriBTN.Location = new Point(761, 54);
+            IleriBTN.Location = new Point(761, 68);
             IleriBTN.Name = "IleriBTN";
             IleriBTN.Size = new Size(60, 55);
             IleriBTN.TabIndex = 4;
@@ -255,11 +256,22 @@
             SilBTN.UseVisualStyleBackColor = true;
             SilBTN.Click += SilBTN_Click;
             // 
+            // GirisSayfasiBTN
+            // 
+            GirisSayfasiBTN.Location = new Point(656, 19);
+            GirisSayfasiBTN.Name = "GirisSayfasiBTN";
+            GirisSayfasiBTN.Size = new Size(165, 29);
+            GirisSayfasiBTN.TabIndex = 6;
+            GirisSayfasiBTN.Text = "Giriş Ekranına dön";
+            GirisSayfasiBTN.UseVisualStyleBackColor = true;
+            GirisSayfasiBTN.Click += GirisSayfasiBTN_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(868, 503);
+            Controls.Add(GirisSayfasiBTN);
             Controls.Add(SilBTN);
             Controls.Add(DegistirBTN);
             Controls.Add(KaydetBTN);
@@ -303,5 +315,6 @@
         private Button KaydetBTN;
         private Button DegistirBTN;
         private Button SilBTN;
+        private Button GirisSayfasiBTN;
     }
 }

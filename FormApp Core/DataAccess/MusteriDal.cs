@@ -69,5 +69,43 @@ namespace FormApp_Core.DataAccess
                 }
             }
         }
+        public static void StartData()
+        {
+            using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())
+            {
+                if (GetAll().Count == 0)
+                {
+                    List<Musteri> musteris = new List<Musteri>()
+                    {
+                        new Musteri()
+                        {
+                            Ad = "Hasan Hüseyin",
+                            Soyad = "Dursun",
+                            Eposta = "h2dw1@gmail.com",
+                            Telefon = "05372063686",
+                            Adres = "çukur mahallesi karaböğet caddesi No:9 Afyonkarahisar - İscehisar"
+                        },
+                        new Musteri()
+                        {
+                            Ad = "Hasan Hüseyin",
+                            Soyad = "Dursun",
+                            Eposta = "h2dw1@gmail.com",
+                            Telefon = "05372063686",
+                            Adres = "çukur mahallesi karaböğet caddesi No:9 Afyonkarahisar - İscehisar"
+                        },
+                        new Musteri()
+                        {
+                            Ad = "Hasan Hüseyin",
+                            Soyad = "Dursun",
+                            Eposta = "h2dw1@gmail.com",
+                            Telefon = "05372063686",
+                            Adres = "çukur mahallesi karaböğet caddesi No:9 Afyonkarahisar - İscehisar"
+                        }
+                    };
+                    context.Musteriler.AddRange(musteris);
+                    context.SaveChanges();
+                }
+            }
+        }
     }
 }

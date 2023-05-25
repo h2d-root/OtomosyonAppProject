@@ -26,6 +26,7 @@ namespace FormApp_Core
 
         private void UrunIslemForm_Load(object sender, EventArgs e)
         {
+            UrunDal.StartData();
             Yenile();
         }
 
@@ -33,40 +34,117 @@ namespace FormApp_Core
         {
             UrunlerDGV.DataSource = UrunDal.GetAll();
         }
-        public void Esitle()
+        public Urun Esitle()
         {
             Urun urun = new Urun()
             {
-                İsim = UrunAdiTB.Text,
+                Isim = UrunAdiTB.Text,
                 Marka = UrunMarkaTB.Text,
                 Model = UrunModelTB.Text,
                 Renk = UrunRenkTB.Text,
                 Stok = Convert.ToInt32(UrunStokTB.Text),
                 AlisTutar = Convert.ToDecimal(AlisFiyatiTb.Text),
-                SatisTutar = Convert.ToInt32(SatisFiyatTB),
+                SatisTutar = Convert.ToDecimal(SatisFiyatTB.Text),
                 Satilan = Convert.ToInt32(ToplamSatilanTB.Text)
             };
+            return urun;
 
         }
 
         private void YeniKayitBTN_Click(object sender, EventArgs e)
         {
-
+            Clear();
         }
 
         private void KaydetBTN_Click(object sender, EventArgs e)
         {
-
+            var result = UrunDal.Add(Esitle());
+            if (result)
+            {
+                MessageBox.Show("Ürün bilgileri eklenmiştir.");
+                Yenile();
+            }
+            else
+            {
+                MessageBox.Show("Ürün Eklenilemedi Tekrar deneyiniz!");
+            }
         }
 
         private void DegistirBTN_Click(object sender, EventArgs e)
         {
-
+            var result = UrunDal.Update(EsitleUpdateAndDelete());
+            if (result)
+            {
+                MessageBox.Show("Ürün bilgileri güncellenmiştir.");
+                Yenile();
+            }
+            else
+            {
+                MessageBox.Show("Ürün bilgileri güncellenemedi!");
+            }
         }
 
         private void SilBTN_Click(object sender, EventArgs e)
         {
+            var result = UrunDal.Delete(EsitleUpdateAndDelete());
+            if (result)
+            {
+                MessageBox.Show("Ürün bilgileri silinmiştir.");
+                Yenile();
+            }
+            else
+            {
+                MessageBox.Show("Ürün bilgileri silinilemedi!");
+            }
+        }
 
+        public void Clear()
+        {
+            BarkodNoTB.Clear();
+            UrunAdiTB.Clear();
+            UrunRenkTB.Clear();
+            UrunMarkaTB.Clear();
+            UrunModelTB.Clear();
+            UrunStokTB.Clear();
+            AlisFiyatiTb.Clear();
+            SatisFiyatTB.Clear();
+            ToplamSatilanTB.Clear();
+        }
+        public Urun EsitleUpdateAndDelete()
+        {
+            Urun urun = new Urun()
+            {
+                Id = Guid.Parse(BarkodNoTB.Text),
+                Isim = UrunAdiTB.Text,
+                Marka = UrunMarkaTB.Text,
+                Model = UrunModelTB.Text,
+                Renk = UrunRenkTB.Text,
+                Stok = Convert.ToInt32(UrunStokTB.Text),
+                AlisTutar = Convert.ToDecimal(AlisFiyatiTb.Text),
+                SatisTutar = Convert.ToDecimal(SatisFiyatTB.Text),
+                Satilan = Convert.ToInt32(ToplamSatilanTB.Text)
+            };
+            return urun;
+        }
+
+        private void GirisSayfasiBTN_Click(object sender, EventArgs e)
+        {
+            GirisForm girisForm = new GirisForm();
+            girisForm.Show();
+            this.Hide();
+        }
+
+        private void UrunlerDGV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            BarkodNoTB.Text = UrunlerDGV.CurrentRow.Cells[0].Value.ToString();
+            UrunAdiTB.Text = UrunlerDGV.CurrentRow.Cells[1].Value.ToString();
+            UrunRenkTB.Text = UrunlerDGV.CurrentRow.Cells[2].Value.ToString();
+            UrunMarkaTB.Text = UrunlerDGV.CurrentRow.Cells[3].Value.ToString();
+            UrunModelTB.Text = UrunlerDGV.CurrentRow.Cells[4].Value.ToString();
+            UrunStokTB.Text = UrunlerDGV.CurrentRow.Cells[5].Value.ToString();
+            ToplamSatilanTB.Text = UrunlerDGV.CurrentRow.Cells[6].Value.ToString();
+            AlisFiyatiTb.Text = UrunlerDGV.CurrentRow.Cells[7].Value.ToString();
+            SatisFiyatTB.Text = UrunlerDGV.CurrentRow.Cells[8].Value.ToString();
         }
     }
 }

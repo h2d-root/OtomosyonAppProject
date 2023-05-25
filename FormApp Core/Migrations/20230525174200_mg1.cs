@@ -82,7 +82,7 @@ namespace FormApp_Core.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    İsim = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Isim = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Renk = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Marka = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),

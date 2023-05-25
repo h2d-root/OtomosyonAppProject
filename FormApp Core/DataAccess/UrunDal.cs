@@ -18,6 +18,55 @@ namespace FormApp_Core.DataAccess
                 return result;
             }
         }
+        public static void StartData()
+        {
+            using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())
+            {
+                if (GetAll().Count == 0)
+                {
+                            List<Urun> uruns = new List<Urun>()
+                    {
+                         new Urun()
+                    {
+                        Isim = "ürün 1",
+                        Marka = "Asus",
+                        Model = "ROG",
+                        Renk = "Gümüş",
+                        Stok = 10,
+                        AlisTutar = Convert.ToDecimal("20.000,00"),
+                        SatisTutar = Convert.ToDecimal("24.000,00"),
+                        Satilan = Convert.ToInt32(0)
+                    },
+                              new Urun()
+                    {
+                        Isim = "ürün 2",
+                        Marka = "Asus",
+                        Model = "TUF",
+                        Renk = "Siyah",
+                        Stok = 10,
+                        AlisTutar = Convert.ToDecimal("20.000,00"),
+                        SatisTutar = Convert.ToDecimal("24.000,00"),
+                        Satilan = Convert.ToInt32(0)
+                    },
+                                   new Urun()
+                    {
+                        Isim = "ürün 1",
+                        Marka = "Monster",
+                        Model = "Abra",
+                        Renk = "Siyah",
+                        Stok = 10,
+                        AlisTutar = Convert.ToDecimal("20.000,00"),
+                        SatisTutar = Convert.ToDecimal("25.000,00"),
+                        Satilan = Convert.ToInt32(0)
+                    }
+                };
+                    context.Urunler.AddRange(uruns);
+                    context.SaveChanges();
+                }
+            }
+            
+        }
+
         public static bool Add(Urun urun)
         {
             using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())

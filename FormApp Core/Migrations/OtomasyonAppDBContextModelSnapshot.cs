@@ -144,6 +144,10 @@ namespace FormApp_Core.Migrations
                     b.Property<decimal>("AlisTutar")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Isim")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Marka")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -164,10 +168,6 @@ namespace FormApp_Core.Migrations
 
                     b.Property<int>("Stok")
                         .HasColumnType("int");
-
-                    b.Property<string>("İsim")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

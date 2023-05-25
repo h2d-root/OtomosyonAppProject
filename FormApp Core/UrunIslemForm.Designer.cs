@@ -56,6 +56,9 @@
             SatisFiyatTB = new TextBox();
             label7 = new Label();
             AlisFiyatiTb = new TextBox();
+            GirisSayfasiBTN = new Button();
+            label10 = new Label();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)UrunlerDGV).BeginInit();
             musteriBilgileriGB.SuspendLayout();
             SuspendLayout();
@@ -159,7 +162,7 @@
             // 
             // IleriBTN
             // 
-            IleriBTN.Location = new Point(779, 54);
+            IleriBTN.Location = new Point(779, 55);
             IleriBTN.Name = "IleriBTN";
             IleriBTN.Size = new Size(60, 55);
             IleriBTN.TabIndex = 11;
@@ -192,6 +195,7 @@
             UrunlerDGV.RowTemplate.Height = 29;
             UrunlerDGV.Size = new Size(594, 247);
             UrunlerDGV.TabIndex = 7;
+            UrunlerDGV.CellClick += UrunlerDGV_CellClick;
             // 
             // label1
             // 
@@ -221,7 +225,7 @@
             // 
             // geriBTN
             // 
-            geriBTN.Location = new Point(674, 54);
+            geriBTN.Location = new Point(674, 55);
             geriBTN.Name = "geriBTN";
             geriBTN.Size = new Size(60, 55);
             geriBTN.TabIndex = 9;
@@ -231,6 +235,8 @@
             // musteriBilgileriGB
             // 
             musteriBilgileriGB.BackColor = Color.SeaShell;
+            musteriBilgileriGB.Controls.Add(label11);
+            musteriBilgileriGB.Controls.Add(label10);
             musteriBilgileriGB.Controls.Add(label8);
             musteriBilgileriGB.Controls.Add(UrunStokTB);
             musteriBilgileriGB.Controls.Add(label9);
@@ -302,7 +308,7 @@
             // 
             SatisFiyatTB.Location = new Point(419, 175);
             SatisFiyatTB.Name = "SatisFiyatTB";
-            SatisFiyatTB.Size = new Size(169, 27);
+            SatisFiyatTB.Size = new Size(139, 27);
             SatisFiyatTB.TabIndex = 14;
             // 
             // label7
@@ -318,14 +324,43 @@
             // 
             AlisFiyatiTb.Location = new Point(419, 118);
             AlisFiyatiTb.Name = "AlisFiyatiTb";
-            AlisFiyatiTb.Size = new Size(169, 27);
+            AlisFiyatiTb.Size = new Size(139, 27);
             AlisFiyatiTb.TabIndex = 12;
+            // 
+            // GirisSayfasiBTN
+            // 
+            GirisSayfasiBTN.Location = new Point(674, 12);
+            GirisSayfasiBTN.Name = "GirisSayfasiBTN";
+            GirisSayfasiBTN.Size = new Size(165, 29);
+            GirisSayfasiBTN.TabIndex = 16;
+            GirisSayfasiBTN.Text = "Giriş Ekranına dön";
+            GirisSayfasiBTN.UseVisualStyleBackColor = true;
+            GirisSayfasiBTN.Click += GirisSayfasiBTN_Click;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(564, 125);
+            label10.Name = "label10";
+            label10.Size = new Size(24, 20);
+            label10.TabIndex = 20;
+            label10.Text = "TL";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(564, 182);
+            label11.Name = "label11";
+            label11.Size = new Size(24, 20);
+            label11.TabIndex = 21;
+            label11.Text = "TL";
             // 
             // UrunIslemForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(868, 503);
+            Controls.Add(GirisSayfasiBTN);
             Controls.Add(SilBTN);
             Controls.Add(KaydetBTN);
             Controls.Add(YeniKayitBTN);
@@ -337,7 +372,7 @@
             Controls.Add(geriBTN);
             Controls.Add(musteriBilgileriGB);
             Name = "UrunIslemForm";
-            Text = "UrunIslemForm";
+            Text = "Ürün İşlem Form";
             Load += UrunIslemForm_Load;
             ((System.ComponentModel.ISupportInitialize)UrunlerDGV).EndInit();
             musteriBilgileriGB.ResumeLayout(false);
@@ -377,5 +412,8 @@
         private TextBox UrunStokTB;
         private Label label9;
         private TextBox UrunRenkTB;
+        private Button GirisSayfasiBTN;
+        private Label label11;
+        private Label label10;
     }
 }

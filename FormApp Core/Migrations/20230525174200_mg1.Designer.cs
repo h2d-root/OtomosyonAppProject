@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FormApp_Core.Migrations
 {
     [DbContext(typeof(OtomasyonAppDBContext))]
-    [Migration("20230525165040_mg1")]
+    [Migration("20230525174200_mg1")]
     partial class mg1
     {
         /// <inheritdoc />
@@ -147,6 +147,10 @@ namespace FormApp_Core.Migrations
                     b.Property<decimal>("AlisTutar")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Isim")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Marka")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -167,10 +171,6 @@ namespace FormApp_Core.Migrations
 
                     b.Property<int>("Stok")
                         .HasColumnType("int");
-
-                    b.Property<string>("İsim")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

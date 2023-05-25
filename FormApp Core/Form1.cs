@@ -12,6 +12,7 @@ namespace FormApp_Core
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MusteriDal.StartData();
             Yenile();
         }
         private void YeniKayitBTN_Click(object sender, EventArgs e)
@@ -106,6 +107,14 @@ namespace FormApp_Core
             {
                 MessageBox.Show("müþteri bilgileri silinilemedi!");
             }
+        }
+
+
+        private void GirisSayfasiBTN_Click(object sender, EventArgs e)
+        {
+            GirisForm girisForm = new GirisForm();
+            girisForm.Show();
+            this.Hide();
         }
     }
 }

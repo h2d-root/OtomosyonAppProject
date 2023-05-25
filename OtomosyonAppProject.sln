@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33717.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormApp", "WindowsFormsApp1\FormApp.csproj", "{8CEE783A-8EA3-44C0-9606-D39B806A940D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormApp Core", "FormApp Core\FormApp Core.csproj", "{E4D99421-A276-406E-8B69-58C0DA656F89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormApp Core", "FormApp Core\FormApp Core.csproj", "{E4D99421-A276-406E-8B69-58C0DA656F89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8CEE783A-8EA3-44C0-9606-D39B806A940D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CEE783A-8EA3-44C0-9606-D39B806A940D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CEE783A-8EA3-44C0-9606-D39B806A940D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CEE783A-8EA3-44C0-9606-D39B806A940D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E4D99421-A276-406E-8B69-58C0DA656F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E4D99421-A276-406E-8B69-58C0DA656F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4D99421-A276-406E-8B69-58C0DA656F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
