@@ -57,6 +57,7 @@
             label5 = new Label();
             label6 = new Label();
             dataGridViewMusteri = new DataGridView();
+            GirisSayfasiBTN = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewUrun).BeginInit();
             groupBox3.SuspendLayout();
@@ -146,6 +147,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(GirisSayfasiBTN);
             groupBox3.Controls.Add(button3);
             groupBox3.Controls.Add(button2);
             groupBox3.Controls.Add(label9);
@@ -157,9 +159,9 @@
             groupBox3.Controls.Add(AdetTb);
             groupBox3.Controls.Add(taksitTutari);
             groupBox3.Controls.Add(label8);
-            groupBox3.Location = new Point(935, 22);
+            groupBox3.Location = new Point(935, 24);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(268, 748);
+            groupBox3.Size = new Size(268, 746);
             groupBox3.TabIndex = 1;
             groupBox3.TabStop = false;
             groupBox3.Text = "Satış İşlemleri";
@@ -358,6 +360,16 @@
             dataGridViewMusteri.TabIndex = 0;
             dataGridViewMusteri.CellClick += dataGridViewMusteri_CellClick;
             // 
+            // GirisSayfasiBTN
+            // 
+            GirisSayfasiBTN.Location = new Point(37, 494);
+            GirisSayfasiBTN.Name = "GirisSayfasiBTN";
+            GirisSayfasiBTN.Size = new Size(193, 29);
+            GirisSayfasiBTN.TabIndex = 17;
+            GirisSayfasiBTN.Text = "Giriş Ekranına dön";
+            GirisSayfasiBTN.UseVisualStyleBackColor = true;
+            GirisSayfasiBTN.Click += GirisSayfasiBTN_Click;
+            // 
             // SatisForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -367,6 +379,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "SatisForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SatisForm";
             Load += SatisForm_Load;
             groupBox1.ResumeLayout(false);
@@ -411,5 +424,6 @@
         private TextBox MusteriAdiTb;
         private Button button3;
         private Button button2;
+        private Button GirisSayfasiBTN;
     }
 }

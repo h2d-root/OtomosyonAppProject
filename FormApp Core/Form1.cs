@@ -116,5 +116,15 @@ namespace FormApp_Core
             girisForm.Show();
             this.Hide();
         }
+
+        private void IlkKayitBTN_Click(object sender, EventArgs e)
+        {
+            MusteriDal.IlkKaydiGetir();
+        }
+
+        private void SonKayitBTN_Click(object sender, EventArgs e)
+        {
+            MusteriDal.SonKaydiGetir();
+        }
     }
 }

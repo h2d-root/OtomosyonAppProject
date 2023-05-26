@@ -37,5 +37,12 @@ namespace FormApp_Core
             satisForm.Show();
             this.Hide();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            OdemeForm odemeForm = new OdemeForm();
+            odemeForm.Show();
+            this.Hide();
+        }
     }
 }

@@ -18,6 +18,22 @@ namespace FormApp_Core.DataAccess
                 return result;
             }
         }
+        public static Musteri IlkKaydiGetir(string isim)
+        {
+            using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())
+            {
+                var result = context.Musteriler.OrderByDescending(m=>m.Id).FirstOrDefault();
+                return result;
+            }
+        }
+        public static Musteri SonKaydiGetir(string isim)
+        {
+            using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())
+            {
+                var result = context.Musteriler.FirstOrDefault();
+                return result;
+            }
+        }
         public static List<Musteri> GetAll()
         {
             using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())

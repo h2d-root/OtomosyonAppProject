@@ -40,7 +40,7 @@
             MusteriFormBTN.Name = "MusteriFormBTN";
             MusteriFormBTN.Size = new Size(293, 45);
             MusteriFormBTN.TabIndex = 0;
-            MusteriFormBTN.Text = "button1";
+            MusteriFormBTN.Text = "Müşteri İşlemleri";
             MusteriFormBTN.UseVisualStyleBackColor = true;
             MusteriFormBTN.Click += MusteriFormBTN_Click;
             // 
@@ -50,7 +50,7 @@
             UrunFormBTN.Name = "UrunFormBTN";
             UrunFormBTN.Size = new Size(293, 45);
             UrunFormBTN.TabIndex = 0;
-            UrunFormBTN.Text = "button1";
+            UrunFormBTN.Text = "Ürün İşlemleri";
             UrunFormBTN.UseVisualStyleBackColor = true;
             UrunFormBTN.Click += UrunFormBTN_Click;
             // 
@@ -60,7 +60,7 @@
             button3.Name = "button3";
             button3.Size = new Size(293, 45);
             button3.TabIndex = 0;
-            button3.Text = "button1";
+            button3.Text = "Satış İşlemleri";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -70,8 +70,9 @@
             button4.Name = "button4";
             button4.Size = new Size(293, 45);
             button4.TabIndex = 0;
-            button4.Text = "button1";
+            button4.Text = "Ödeme İşlemleri";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // GirisForm
             // 

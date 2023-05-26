@@ -44,5 +44,61 @@ namespace FormApp_Core
             YenileMusteri(MusteriDal.GetAll());
             YenileTaksit(SatisTaksitOdemeDal.GetAllTaksit());
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            if (SatisTaksitOdemeDal.AddOdeme(new Odeme()
+            {
+                TaksitId = Convert.ToInt32(dataGridViewTaksit.CurrentRow.Cells[0].Value),
+                MusteriId = Convert.ToInt32(dataGridViewTaksit.CurrentRow.Cells[2].Value),
+                OdemeTarihi = DateTime.Now.ToShortDateString(),
+                OdemeTutarı = Convert.ToDecimal(dataGridViewTaksit.CurrentRow.Cells[4].Value),
+            }))
+            {
+                Taksit taksit = new Taksit()
+                {
+                    Id = Convert.ToInt32(dataGridViewTaksit.CurrentRow.Cells[0].Value),
+                    SatisId = Convert.ToInt32(dataGridViewTaksit.CurrentRow.Cells[1].Value),
+                    MusteriId = Convert.ToInt32(dataGridViewTaksit.CurrentRow.Cells[2].Value),
+                    VadeSayisi = Convert.ToInt32(dataGridViewTaksit.CurrentRow.Cells[3].Value) - 1,
+                    TaksitTutari = Convert.ToInt32(dataGridViewTaksit.CurrentRow.Cells[4].Value),
+                };
+                SatisTaksitOdemeDal.UpdateTaksit(taksit);
+                MessageBox.Show("Ödeme işlemi başarılı olmuştır");
+                YenileTaksit(SatisTaksitOdemeDal.GetAllTaksit());
+                MNoTb.Text = "1";
+                MusteriAdiTb.Clear();
+                MSoyadTb.Clear();
+                TTutarTb.Clear();
+                TNoTb.Clear();
+            }
+        }
+
+        private void MAdiTb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MNoTb_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                YenileTaksit(SatisTaksitOdemeDal.GetMusteriTaksit(Convert.ToInt32(MNoTb.Text)));
+
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Müşteri Numarası sadece sayı olabilir");
+                MNoTb.Text = "0";
+            }
+        }
+
+        private void GirisSayfasiBTN_Click(object sender, EventArgs e)
+        {
+            GirisForm girisForm = new GirisForm();
+            girisForm.Show();
+            this.Hide();
+        }
     }
 }

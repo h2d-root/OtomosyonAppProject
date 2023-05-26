@@ -28,9 +28,17 @@ namespace FormApp_Core.DataAccess
         }
         public static List<Taksit> GetAllTaksit()
         {
-            using (OtomasyonAppDBContext context =new OtomasyonAppDBContext())
+            using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())
             {
                 var result = context.Taksitler.ToList();
+                return result;
+            }
+        }
+        public static List<Taksit> GetMusteriTaksit(int id)
+        {
+            using (OtomasyonAppDBContext context =new OtomasyonAppDBContext())
+            {
+                var result = context.Taksitler.Where(t=>t.MusteriId == id).ToList();
                 return result;
             }
         }
@@ -53,7 +61,22 @@ namespace FormApp_Core.DataAccess
             }
 
         }
-
+        public static bool AddOdeme(Odeme odeme)
+        {
+            using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())
+            {
+                try
+                {
+                    context.Odemeler.Add(odeme);
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
         public static bool AddTaksit(Taksit taksit, string date, Guid barkod)
         {
             using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())

@@ -197,6 +197,7 @@
             IlkKayitBTN.TabIndex = 2;
             IlkKayitBTN.Text = "<<";
             IlkKayitBTN.UseVisualStyleBackColor = true;
+            IlkKayitBTN.Click += IlkKayitBTN_Click;
             // 
             // SonKayitBTN
             // 
@@ -206,6 +207,7 @@
             SonKayitBTN.TabIndex = 3;
             SonKayitBTN.Text = ">>";
             SonKayitBTN.UseVisualStyleBackColor = true;
+            SonKayitBTN.Click += SonKayitBTN_Click;
             // 
             // IleriBTN
             // 

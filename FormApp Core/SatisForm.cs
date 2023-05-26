@@ -142,7 +142,7 @@ namespace FormApp_Core
             {
                 MessageBox.Show("satış yapılan ürün adeti stok sayısını geçemez");
             }
-            
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -152,6 +152,13 @@ namespace FormApp_Core
             {
                 AdetTb.Text = adet.ToString();
             }
+        }
+
+        private void GirisSayfasiBTN_Click(object sender, EventArgs e)
+        {
+            GirisForm girisForm = new GirisForm();
+            girisForm.Show();
+            this.Hide();
         }
     }
 }
