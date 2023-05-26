@@ -18,7 +18,7 @@ namespace FormApp_Core.DataAccess
                 return result;
             }
         }
-        public static Musteri IlkKaydiGetir(string isim)
+        public static Musteri IlkKaydiGetir()
         {
             using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())
             {
@@ -26,7 +26,7 @@ namespace FormApp_Core.DataAccess
                 return result;
             }
         }
-        public static Musteri SonKaydiGetir(string isim)
+        public static Musteri SonKaydiGetir()
         {
             using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())
             {
