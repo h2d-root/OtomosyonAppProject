@@ -10,6 +10,14 @@ namespace FormApp_Core.DataAccess
 {
     public class MusteriDal
     {
+        public static List<Musteri> GetByIsim(string isim)
+        {
+            using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())
+            {
+                var result = context.Musteriler.Where(m=> m.Ad.Contains(isim)).ToList();
+                return result;
+            }
+        }
         public static List<Musteri> GetAll()
         {
             using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())

@@ -100,7 +100,32 @@ namespace FormApp_Core.DataAccess
                 }
             }
 
+
         }
+
+        public static bool Updateid(Guid id, int satildi)
+        {
+            using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())
+            {
+                var urun = context.Urunler.Where(u => u.Id == id).FirstOrDefault();
+                urun.Stok -= satildi;
+                urun.Satilan += satildi;
+                try
+                {
+                    var entity = context.Entry(urun);
+                    entity.State = EntityState.Modified;
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+
+
+        }
+
         public static bool Delete(Urun urun)
         {
             using (OtomasyonAppDBContext context = new OtomasyonAppDBContext())

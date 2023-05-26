@@ -30,5 +30,12 @@ namespace FormApp_Core
             urunIslemForm.Show();
             this.Hide();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SatisForm satisForm = new SatisForm();
+            satisForm.Show();
+            this.Hide();
+        }
     }
 }
