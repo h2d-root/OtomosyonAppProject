@@ -48,6 +48,8 @@
             DegistirBTN = new Button();
             geriBTN = new Button();
             musteriBilgileriGB = new GroupBox();
+            label11 = new Label();
+            label10 = new Label();
             label8 = new Label();
             UrunStokTB = new TextBox();
             label9 = new Label();
@@ -57,8 +59,6 @@
             label7 = new Label();
             AlisFiyatiTb = new TextBox();
             GirisSayfasiBTN = new Button();
-            label10 = new Label();
-            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)UrunlerDGV).BeginInit();
             musteriBilgileriGB.SuspendLayout();
             SuspendLayout();
@@ -159,6 +159,7 @@
             SonKayitBTN.TabIndex = 10;
             SonKayitBTN.Text = ">>";
             SonKayitBTN.UseVisualStyleBackColor = true;
+            SonKayitBTN.Click += SonKayitBTN_Click;
             // 
             // IleriBTN
             // 
@@ -177,6 +178,7 @@
             IlkKayitBTN.TabIndex = 8;
             IlkKayitBTN.Text = "<<";
             IlkKayitBTN.UseVisualStyleBackColor = true;
+            IlkKayitBTN.Click += IlkKayitBTN_Click;
             // 
             // UrunMarkaTB
             // 
@@ -263,6 +265,24 @@
             musteriBilgileriGB.TabStop = false;
             musteriBilgileriGB.Text = "Ürün Bilgileri";
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(564, 182);
+            label11.Name = "label11";
+            label11.Size = new Size(24, 20);
+            label11.TabIndex = 21;
+            label11.Text = "TL";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(564, 125);
+            label10.Name = "label10";
+            label10.Size = new Size(24, 20);
+            label10.TabIndex = 20;
+            label10.Text = "TL";
+            // 
             // label8
             // 
             label8.AutoSize = true;
@@ -336,24 +356,6 @@
             GirisSayfasiBTN.Text = "Giriş Ekranına dön";
             GirisSayfasiBTN.UseVisualStyleBackColor = true;
             GirisSayfasiBTN.Click += GirisSayfasiBTN_Click;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(564, 125);
-            label10.Name = "label10";
-            label10.Size = new Size(24, 20);
-            label10.TabIndex = 20;
-            label10.Text = "TL";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(564, 182);
-            label11.Name = "label11";
-            label11.Size = new Size(24, 20);
-            label11.TabIndex = 21;
-            label11.Text = "TL";
             // 
             // UrunIslemForm
             // 

@@ -1,23 +1,25 @@
-﻿using FormApp_Core.DataAccess;
-using FormApp_Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Business.Abstract;
+using Entities.Concrete;
 
 namespace FormApp_Core
 {
     public partial class OdemeForm : Form
     {
+        IMusteriService _musteriManager;
+        ITaksitService _taksitManager;
+        IOdemeService _odemeManager;
         public OdemeForm()
         {
             InitializeComponent();
         }
+
+        public OdemeForm(IMusteriService musteriManager, ITaksitService taksitManager, IOdemeService odemeManager)
+        {
+            _musteriManager = musteriManager;
+            _taksitManager = taksitManager;
+            _odemeManager = odemeManager;
+        }
+
         public void YenileMusteri(List<Musteri> musteri)
         {
             dataGridViewMusteri.DataSource = musteri;
@@ -41,14 +43,14 @@ namespace FormApp_Core
 
         private void OdemeForm_Load(object sender, EventArgs e)
         {
-            YenileMusteri(MusteriDal.GetAll());
-            YenileTaksit(SatisTaksitOdemeDal.GetAllTaksit());
+            YenileMusteri(_musteriManager.GetAll());
+            YenileTaksit(_taksitManager.GetAll());
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (SatisTaksitOdemeDal.AddOdeme(new Odeme()
+            if (_odemeManager.Add(new Odeme()
             {
                 TaksitId = Convert.ToInt32(dataGridViewTaksit.CurrentRow.Cells[0].Value),
                 MusteriId = Convert.ToInt32(dataGridViewTaksit.CurrentRow.Cells[2].Value),
@@ -64,9 +66,9 @@ namespace FormApp_Core
                     VadeSayisi = Convert.ToInt32(dataGridViewTaksit.CurrentRow.Cells[3].Value) - 1,
                     TaksitTutari = Convert.ToInt32(dataGridViewTaksit.CurrentRow.Cells[4].Value),
                 };
-                SatisTaksitOdemeDal.UpdateTaksit(taksit);
+                _taksitManager.Update(taksit);
                 MessageBox.Show("Ödeme işlemi başarılı olmuştır");
-                YenileTaksit(SatisTaksitOdemeDal.GetAllTaksit());
+                YenileTaksit(_taksitManager.GetAll());
                 MNoTb.Text = "1";
                 MusteriAdiTb.Clear();
                 MSoyadTb.Clear();
@@ -84,7 +86,7 @@ namespace FormApp_Core
         {
             try
             {
-                YenileTaksit(SatisTaksitOdemeDal.GetMusteriTaksit(Convert.ToInt32(MNoTb.Text)));
+                YenileTaksit(_taksitManager.GetByMusteriId(Convert.ToInt32(MNoTb.Text)));
 
             }
             catch (FormatException)

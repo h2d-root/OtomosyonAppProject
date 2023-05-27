@@ -1,10 +1,17 @@
-using FormApp_Core.DataAccess;
-using FormApp_Core.Entities;
+using Business.Abstract;
+using Entities.Concrete;
 
 namespace FormApp_Core
 {
     public partial class Form1 : Form
     {
+        IMusteriService _musteriManager;
+
+        public Form1(IMusteriService musteriManager)
+        {
+            _musteriManager = musteriManager;
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -12,7 +19,6 @@ namespace FormApp_Core
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MusteriDal.StartData();
             Yenile();
         }
         private void YeniKayitBTN_Click(object sender, EventArgs e)
@@ -21,7 +27,7 @@ namespace FormApp_Core
         }
         public void Yenile()
         {
-            MusterilerDGV.DataSource = MusteriDal.GetAll();
+            MusterilerDGV.DataSource = _musteriManager.GetAll();
         }
         public void ClearGB()
         {
@@ -42,17 +48,14 @@ namespace FormApp_Core
             MusteriAdresiRTB.Text = MusterilerDGV.CurrentRow.Cells[4].Value.ToString();
         }
 
-        public Musteri EsitleUpdateAndDelete()
+        public Musteri EsitleTers(Musteri musteri)
         {
-            Musteri musteri = new Musteri()
-            {
-                Id = Convert.ToInt32(MusteriNoTB.Text),
-                Ad = MusteriAdiTB.Text,
-                Soyad = MusteriSoyadiTB.Text,
-                Eposta = MusteriEpostaTb.Text,
-                Telefon = MusteriTelefonNoTb.Text,
-                Adres = MusteriAdresiRTB.Text
-            };
+            MusteriNoTB.Text = musteri.Id.ToString();
+            MusteriAdiTB.Text = musteri.Ad;
+            MusteriSoyadiTB.Text = musteri.Soyad;
+            MusteriAdresiRTB.Text = musteri.Adres;
+            MusteriEpostaTb.Text = musteri.Eposta;
+            MusteriTelefonNoTb.Text = musteri.Telefon;
             return musteri;
         }
         public Musteri Esitle()
@@ -69,7 +72,7 @@ namespace FormApp_Core
         }
         private void KaydetBTN_Click(object sender, EventArgs e)
         {
-            var result = MusteriDal.Add(Esitle());
+            var result = _musteriManager.Add(Esitle());
             if (result)
             {
                 MessageBox.Show("Müþteri bilgileri eklenmiþtir.");
@@ -83,7 +86,9 @@ namespace FormApp_Core
 
         private void DegistirBTN_Click(object sender, EventArgs e)
         {
-            var result = MusteriDal.Update(EsitleUpdateAndDelete());
+            Musteri musteri = Esitle();
+            musteri.Id = Convert.ToInt32(MusterilerDGV.CurrentRow.Cells[0].Value);
+            var result = _musteriManager.Update(musteri);
             if (result)
             {
                 MessageBox.Show("müþteri bilgileri güncellenmiþtir.");
@@ -97,7 +102,9 @@ namespace FormApp_Core
 
         private void SilBTN_Click(object sender, EventArgs e)
         {
-            var result = MusteriDal.Delete(EsitleUpdateAndDelete());
+            Musteri musteri = Esitle();
+            musteri.Id = Convert.ToInt32(MusterilerDGV.CurrentRow.Cells[0].Value);
+            var result = _musteriManager.Delete(musteri);
             if (result)
             {
                 MessageBox.Show("müþteri bilgileri silindi");
@@ -119,12 +126,14 @@ namespace FormApp_Core
 
         private void IlkKayitBTN_Click(object sender, EventArgs e)
         {
-            MusteriDal.IlkKaydiGetir();
+            var result = _musteriManager.GetFirstData();
+            EsitleTers(result);
         }
 
         private void SonKayitBTN_Click(object sender, EventArgs e)
         {
-            MusteriDal.SonKaydiGetir();
+            var result = _musteriManager.GetLastData();
+            EsitleTers(result); 
         }
     }
 }

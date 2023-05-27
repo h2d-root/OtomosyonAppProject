@@ -11,12 +11,12 @@ namespace Business.Abstract
     {
         List<Musteri> GetAll();
         Musteri GetById(int id);
-        Musteri GetByString(string keyWord);
+        List<Musteri> GetByString(string keyWord);
         bool Add(Musteri musteri);
        bool Update(Musteri musteri);
         bool Delete(Musteri musteri);
-        Musteri FirstData();
-        Musteri LastData();
+        Musteri GetFirstData();
+        Musteri GetLastData();
     }
 
 

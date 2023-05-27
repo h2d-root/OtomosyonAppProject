@@ -5,9 +5,10 @@ namespace Business.Abstract
     {
         List<Taksit> GetAll();
         Taksit GetById(int id);
-        bool Add(Satis satis);
-        bool Update(Satis satis);
-        bool Delete(Satis satis);
+        List<Taksit> GetByMusteriId(int id);
+        bool Add(Taksit taksit);
+        bool Update(Taksit taksit);
+        bool Delete(Taksit taksit);
     }
 
 

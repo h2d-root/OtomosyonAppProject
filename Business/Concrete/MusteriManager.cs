@@ -45,7 +45,7 @@ namespace Business.Concrete
 
         }
 
-        public Musteri FirstData()
+        public Musteri GetFirstData()
         {
             var result = _musteriDal.GetAll().FirstOrDefault();
             return result;
@@ -63,14 +63,16 @@ namespace Business.Concrete
             return result;
         }
 
-        public Musteri GetByString(string keyWord)
+        public List<Musteri> GetByString(string keyWord)
         {
-            throw new NotImplementedException();
+            var result = _musteriDal.GetAll(m=>m.Ad == keyWord);
+            return result;
         }
 
-        public Musteri LastData()
+        public Musteri GetLastData()
         {
-            throw new NotImplementedException();
+            var result = _musteriDal.GetAllOrderByDesc().FirstOrDefault();
+            return result;
         }
 
         public bool Update(Musteri musteri)

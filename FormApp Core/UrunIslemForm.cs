@@ -1,19 +1,17 @@
-﻿using FormApp_Core.DataAccess;
-using FormApp_Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Business.Abstract;
+using Entities.Concrete;
 
 namespace FormApp_Core
 {
     public partial class UrunIslemForm : Form
     {
+        IUrunService _urunManager;
+
+        public UrunIslemForm(IUrunService urunService)
+        {
+            this._urunManager = urunService;
+        }
+
         public UrunIslemForm()
         {
             InitializeComponent();
@@ -26,13 +24,12 @@ namespace FormApp_Core
 
         private void UrunIslemForm_Load(object sender, EventArgs e)
         {
-            UrunDal.StartData();
             Yenile();
         }
 
         public void Yenile()
         {
-            UrunlerDGV.DataSource = UrunDal.GetAll();
+            UrunlerDGV.DataSource = _urunManager.GetAll();
         }
         public Urun Esitle()
         {
@@ -58,7 +55,7 @@ namespace FormApp_Core
 
         private void KaydetBTN_Click(object sender, EventArgs e)
         {
-            var result = UrunDal.Add(Esitle());
+            var result = _urunManager.Add(Esitle());
             if (result)
             {
                 MessageBox.Show("Ürün bilgileri eklenmiştir.");
@@ -72,7 +69,9 @@ namespace FormApp_Core
 
         private void DegistirBTN_Click(object sender, EventArgs e)
         {
-            var result = UrunDal.Update(EsitleUpdateAndDelete());
+            Urun urun = Esitle();
+            urun.Id = Guid.Parse(UrunlerDGV.CurrentRow.Cells[0].Value.ToString());
+            var result = _urunManager.Update(urun);
             if (result)
             {
                 MessageBox.Show("Ürün bilgileri güncellenmiştir.");
@@ -86,7 +85,9 @@ namespace FormApp_Core
 
         private void SilBTN_Click(object sender, EventArgs e)
         {
-            var result = UrunDal.Delete(EsitleUpdateAndDelete());
+            Urun urun = Esitle();
+            urun.Id = Guid.Parse(UrunlerDGV.CurrentRow.Cells[0].Value.ToString());
+            var result = _urunManager.Delete(urun);
             if (result)
             {
                 MessageBox.Show("Ürün bilgileri silinmiştir.");
@@ -110,20 +111,18 @@ namespace FormApp_Core
             SatisFiyatTB.Clear();
             ToplamSatilanTB.Clear();
         }
-        public Urun EsitleUpdateAndDelete()
+        public Urun EsitleTers(Urun urun)
         {
-            Urun urun = new Urun()
-            {
-                Id = Guid.Parse(BarkodNoTB.Text),
-                Isim = UrunAdiTB.Text,
-                Marka = UrunMarkaTB.Text,
-                Model = UrunModelTB.Text,
-                Renk = UrunRenkTB.Text,
-                Stok = Convert.ToInt32(UrunStokTB.Text),
-                AlisTutar = Convert.ToDecimal(AlisFiyatiTb.Text),
-                SatisTutar = Convert.ToDecimal(SatisFiyatTB.Text),
-                Satilan = Convert.ToInt32(ToplamSatilanTB.Text)
-            };
+
+            BarkodNoTB.Text = urun.Id.ToString();
+            UrunAdiTB.Text = urun.Isim;
+            UrunMarkaTB.Text = urun.Marka;
+            UrunModelTB.Text = urun.Model;
+            UrunRenkTB.Text = urun.Renk;
+            UrunStokTB.Text = urun.Stok.ToString();
+            AlisFiyatiTb.Text = urun.AlisTutar.ToString();
+            SatisFiyatTB.Text = urun.SatisTutar.ToString();
+            ToplamSatilanTB.Text = urun.Satilan.ToString();
             return urun;
         }
 
@@ -145,6 +144,18 @@ namespace FormApp_Core
             ToplamSatilanTB.Text = UrunlerDGV.CurrentRow.Cells[6].Value.ToString();
             AlisFiyatiTb.Text = UrunlerDGV.CurrentRow.Cells[7].Value.ToString();
             SatisFiyatTB.Text = UrunlerDGV.CurrentRow.Cells[8].Value.ToString();
+        }
+
+        private void IlkKayitBTN_Click(object sender, EventArgs e)
+        {
+            Urun urun = _urunManager.GetFirstData();
+            EsitleTers(urun);
+        }
+
+        private void SonKayitBTN_Click(object sender, EventArgs e)
+        {
+            Urun urun = _urunManager.GetLastData();
+            EsitleTers(urun);
         }
     }
 }

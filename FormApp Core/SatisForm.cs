@@ -1,33 +1,38 @@
-﻿using FormApp_Core.DataAccess;
-using FormApp_Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Business.Abstract;
+using Entities.Concrete;
 
 namespace FormApp_Core
 {
     public partial class SatisForm : Form
     {
+        IMusteriService _musteriManager;
+        ITaksitService _taksitManager;
+        IUrunService _urunManager;
+        IOdemeService _odemeManager;
+        ISatisService _satisManager;
         public SatisForm()
         {
             InitializeComponent();
         }
 
+        public SatisForm(IMusteriService musteriManager, ITaksitService taksitManager, IUrunService urunManager, IOdemeService odemeManager, ISatisService satisManager)
+        {
+            _musteriManager = musteriManager;
+            _taksitManager = taksitManager;
+            _urunManager = urunManager;
+            _odemeManager = odemeManager;
+            _satisManager = satisManager;
+        }
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            YenileMusteri(MusteriDal.GetByIsim(MAdiTb.Text));
+            YenileMusteri(_musteriManager.GetByString(MAdiTb.Text));
         }
 
         private void SatisForm_Load(object sender, EventArgs e)
         {
-            YenileMusteri(MusteriDal.GetAll());
-            YenileUrun(UrunDal.GetAll());
+            YenileMusteri(_musteriManager.GetAll());
+            YenileUrun(_urunManager.GetAll());
         }
         public void YenileMusteri(List<Musteri> musteri)
         {
@@ -64,21 +69,33 @@ namespace FormApp_Core
                     Tutar = Convert.ToDecimal(ToplamTutarTb.Text),
                     SatisTarihi = DateTime.Now.ToShortDateString(),
                 };
-                if (SatisTaksitOdemeDal.AddSatis(satis))
+                if (_satisManager.Add(satis))
                 {
-                    UrunDal.Updateid(Guid.Parse(UBNoTb.Text), Convert.ToInt32(AdetTb.Text));
+                    Urun urun = new Urun()
+                    {
+                        Id = Guid.Parse(dataGridViewUrun.CurrentRow.Cells[0].Value.ToString()),
+                        Isim = dataGridViewUrun.CurrentRow.Cells[1].Value.ToString(),
+                        Marka = dataGridViewUrun.CurrentRow.Cells[3].Value.ToString(),
+                        Model = dataGridViewUrun.CurrentRow.Cells[4].Value.ToString(),
+                        Renk = dataGridViewUrun.CurrentRow.Cells[2].Value.ToString(),
+                        Stok = Convert.ToInt32(dataGridViewUrun.CurrentRow.Cells[5].Value.ToString()) - Convert.ToInt32(AdetTb.Text),
+                        AlisTutar = Convert.ToDecimal(dataGridViewUrun.CurrentRow.Cells[7].Value.ToString()),
+                        SatisTutar = Convert.ToDecimal(dataGridViewUrun.CurrentRow.Cells[8].Value.ToString()),
+                        Satilan = Convert.ToInt32(dataGridViewUrun.CurrentRow.Cells[6].Value.ToString()) + Convert.ToInt32(AdetTb.Text)
+                    };
+                    _urunManager.Update(urun);
                     MessageBox.Show("satış tamamlandı");
-                    YenileUrun(UrunDal.GetAll());
+                    YenileUrun(_urunManager.GetAll());
                     if (TaksitRB.Checked)
                     {
                         Taksit taksit = new Taksit()
                         {
                             MusteriId = Convert.ToInt32(MNoTb.Text),
                             VadeSayisi = Convert.ToInt32(taksitTutari.Text),
-                            SatisId = 0,
+                            SatisId = _satisManager.LastData().Id,
                             TaksitTutari = Convert.ToDecimal(label9.Text),
                         };
-                        SatisTaksitOdemeDal.AddTaksit(taksit, DateTime.Now.ToShortDateString(), Guid.Parse(UBNoTb.Text));
+                        _taksitManager.Add(taksit);
                     }
                 }
                 else

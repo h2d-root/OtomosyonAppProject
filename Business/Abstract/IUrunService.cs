@@ -4,7 +4,6 @@ namespace Business.Abstract
     public interface IUrunService
     {
         List<Urun> GetAll();
-        //List<Urun> GetByString(string keyWord);
         bool Add(Urun urun);
         Urun GetLastData();
         Urun GetFirstData();

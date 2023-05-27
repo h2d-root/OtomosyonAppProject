@@ -50,6 +50,15 @@ namespace Core.DataAccess.EntityFramework
                     : context.Set<TEntitiy>().Where(filter).ToList();
             }
         }
+        public List<TEntitiy> GetAllOrderByDesc(Expression<Func<TEntitiy, bool>> filter = null)
+        {
+            using (TContext context = new TContext())
+            {
+                return filter == null
+                    ? context.Set<TEntitiy>().ToList()
+                    : context.Set<TEntitiy>().Where(filter).ToList();
+            }
+        }
 
         public void Update(TEntitiy entity)
         {
