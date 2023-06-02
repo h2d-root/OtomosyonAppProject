@@ -1,6 +1,10 @@
-using Autofac;
-using Business.AutoFac;
+using Business.Abstract;
+using Business.Concrete;
 using DataAccess;
+using DataAccess.Abstract;
+using DataAccess.Concrete;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace FormApp_Core
 {
@@ -9,24 +13,42 @@ namespace FormApp_Core
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
+        /// 
+        public static IServiceProvider ServiceProvider { get; private set; }
+
         [STAThread]
         static void Main()
         {
             
             var dbContext = new OtomasyonAppDBContext();
             SeedData.Start(dbContext);
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
 
-            var builder = new ContainerBuilder();
-            builder.RegisterModule(new MyModule());
+            var host = CreateHostBuilder().Build();
+            ServiceProvider = host.Services;
 
-            var container = builder.Build();
 
-            var mainForm = container.Resolve<MainForm>(); // Ana formunuzun türünü belirtin
-            var mainForm2 = container.Resolve<MainForm2>();
-
-            Application.Run(new GirisForm());
+            Application.Run(ServiceProvider.GetRequiredService<GirisForm>());
+        }
+        static IHostBuilder CreateHostBuilder()
+        {
+            return Host.CreateDefaultBuilder()
+                .ConfigureServices((context, services) => {
+                    services.AddTransient<IMusteriService, MusteriManager>();
+                    services.AddTransient<IUrunService, UrunManager>();
+                    services.AddTransient<ITaksitService, TaksitManager>();
+                    services.AddTransient<ISatisService, SatisManager>();
+                    services.AddTransient<IOdemeService, OdemeManager>();
+                    services.AddTransient<IMusteriDal, MusteriDal>();
+                    services.AddTransient<IUrunDal, UrunDal>();
+                    services.AddTransient<ITaksitDal, TaksitDal>();
+                    services.AddTransient<ISatisDal, SatisDal>();
+                    services.AddTransient<IOdemeDal, OdemeDal>();
+                    services.AddTransient<GirisForm>();
+                    services.AddTransient<Form1>();
+                    services.AddTransient<OdemeForm>();
+                    services.AddTransient<SatisForm>();
+                    services.AddTransient<UrunIslemForm>();
+                });
         }
     }
 }

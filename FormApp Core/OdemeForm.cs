@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FormApp_Core
 {
@@ -8,17 +9,14 @@ namespace FormApp_Core
         IMusteriService _musteriManager;
         ITaksitService _taksitManager;
         IOdemeService _odemeManager;
-        public OdemeForm()
-        {
-            InitializeComponent();
-        }
-
         public OdemeForm(IMusteriService musteriManager, ITaksitService taksitManager, IOdemeService odemeManager)
         {
+            InitializeComponent();
             _musteriManager = musteriManager;
             _taksitManager = taksitManager;
             _odemeManager = odemeManager;
         }
+
 
         public void YenileMusteri(List<Musteri> musteri)
         {
@@ -98,7 +96,7 @@ namespace FormApp_Core
 
         private void GirisSayfasiBTN_Click(object sender, EventArgs e)
         {
-            GirisForm girisForm = new GirisForm();
+            var girisForm = Program.ServiceProvider.GetRequiredService<GirisForm>();
             girisForm.Show();
             this.Hide();
         }

@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FormApp_Core
 {
@@ -7,14 +8,11 @@ namespace FormApp_Core
     {
         IUrunService _urunManager;
 
-        public UrunIslemForm(IUrunService urunService)
-        {
-            this._urunManager = urunService;
-        }
 
-        public UrunIslemForm()
+        public UrunIslemForm(IUrunService urunManager)
         {
             InitializeComponent();
+            _urunManager = urunManager;
         }
 
         private void UrunAdiTB_TextChanged(object sender, EventArgs e)
@@ -128,7 +126,7 @@ namespace FormApp_Core
 
         private void GirisSayfasiBTN_Click(object sender, EventArgs e)
         {
-            GirisForm girisForm = new GirisForm();
+            var girisForm = Program.ServiceProvider.GetRequiredService<GirisForm>();
             girisForm.Show();
             this.Hide();
         }

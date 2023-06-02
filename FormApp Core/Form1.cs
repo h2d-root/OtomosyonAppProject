@@ -1,20 +1,16 @@
 using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FormApp_Core
 {
     public partial class Form1 : Form
     {
         IMusteriService _musteriManager;
-
         public Form1(IMusteriService musteriManager)
         {
-            _musteriManager = musteriManager;
-        }
-
-        public Form1()
-        {
             InitializeComponent();
+            _musteriManager = musteriManager;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -119,7 +115,7 @@ namespace FormApp_Core
 
         private void GirisSayfasiBTN_Click(object sender, EventArgs e)
         {
-            GirisForm girisForm = new GirisForm();
+            var girisForm = Program.ServiceProvider.GetRequiredService<GirisForm>();
             girisForm.Show();
             this.Hide();
         }

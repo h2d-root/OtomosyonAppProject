@@ -36,9 +36,10 @@
             // 
             // MusteriFormBTN
             // 
-            MusteriFormBTN.Location = new Point(246, 110);
+            MusteriFormBTN.Location = new Point(215, 82);
+            MusteriFormBTN.Margin = new Padding(3, 2, 3, 2);
             MusteriFormBTN.Name = "MusteriFormBTN";
-            MusteriFormBTN.Size = new Size(293, 45);
+            MusteriFormBTN.Size = new Size(256, 34);
             MusteriFormBTN.TabIndex = 0;
             MusteriFormBTN.Text = "Müşteri İşlemleri";
             MusteriFormBTN.UseVisualStyleBackColor = true;
@@ -46,9 +47,10 @@
             // 
             // UrunFormBTN
             // 
-            UrunFormBTN.Location = new Point(246, 161);
+            UrunFormBTN.Location = new Point(215, 121);
+            UrunFormBTN.Margin = new Padding(3, 2, 3, 2);
             UrunFormBTN.Name = "UrunFormBTN";
-            UrunFormBTN.Size = new Size(293, 45);
+            UrunFormBTN.Size = new Size(256, 34);
             UrunFormBTN.TabIndex = 0;
             UrunFormBTN.Text = "Ürün İşlemleri";
             UrunFormBTN.UseVisualStyleBackColor = true;
@@ -56,9 +58,10 @@
             // 
             // button3
             // 
-            button3.Location = new Point(246, 212);
+            button3.Location = new Point(215, 159);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(293, 45);
+            button3.Size = new Size(256, 34);
             button3.TabIndex = 0;
             button3.Text = "Satış İşlemleri";
             button3.UseVisualStyleBackColor = true;
@@ -66,9 +69,10 @@
             // 
             // button4
             // 
-            button4.Location = new Point(246, 263);
+            button4.Location = new Point(215, 197);
+            button4.Margin = new Padding(3, 2, 3, 2);
             button4.Name = "button4";
-            button4.Size = new Size(293, 45);
+            button4.Size = new Size(256, 34);
             button4.TabIndex = 0;
             button4.Text = "Ödeme İşlemleri";
             button4.UseVisualStyleBackColor = true;
@@ -76,15 +80,17 @@
             // 
             // GirisForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
             Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(UrunFormBTN);
             Controls.Add(MusteriFormBTN);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "GirisForm";
             Text = "GirisForm";
+            Load += GirisForm_Load;
             ResumeLayout(false);
         }
 

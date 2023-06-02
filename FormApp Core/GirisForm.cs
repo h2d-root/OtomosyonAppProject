@@ -1,4 +1,5 @@
-﻿using Business.AutoFac;
+﻿using Business.Abstract;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,30 +21,35 @@ namespace FormApp_Core
 
         private void MusteriFormBTN_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            Form1 form1 = Program.ServiceProvider.GetRequiredService<Form1>();
             form1.Show();
             this.Hide();
         }
 
         private void UrunFormBTN_Click(object sender, EventArgs e)
         {
-            UrunIslemForm urunIslemForm = new UrunIslemForm();
+            UrunIslemForm urunIslemForm = Program.ServiceProvider.GetRequiredService<UrunIslemForm>();
             urunIslemForm.Show();
             this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SatisForm satisForm = new SatisForm();
+            SatisForm satisForm = Program.ServiceProvider.GetRequiredService<SatisForm>();
             satisForm.Show();
             this.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            OdemeForm odemeForm = new OdemeForm();
+            OdemeForm odemeForm = Program.ServiceProvider.GetRequiredService<OdemeForm>();
             odemeForm.Show();
             this.Hide();
+        }
+
+        private void GirisForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

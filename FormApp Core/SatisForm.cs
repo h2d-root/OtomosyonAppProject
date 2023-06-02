@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FormApp_Core
 {
@@ -8,21 +9,17 @@ namespace FormApp_Core
         IMusteriService _musteriManager;
         ITaksitService _taksitManager;
         IUrunService _urunManager;
-        IOdemeService _odemeManager;
         ISatisService _satisManager;
-        public SatisForm()
+        public SatisForm(IMusteriService musteriManager, ITaksitService taksitManager, IUrunService urunManager, ISatisService satisManager)
         {
             InitializeComponent();
-        }
-
-        public SatisForm(IMusteriService musteriManager, ITaksitService taksitManager, IUrunService urunManager, IOdemeService odemeManager, ISatisService satisManager)
-        {
             _musteriManager = musteriManager;
             _taksitManager = taksitManager;
             _urunManager = urunManager;
-            _odemeManager = odemeManager;
             _satisManager = satisManager;
         }
+
+
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -173,7 +170,7 @@ namespace FormApp_Core
 
         private void GirisSayfasiBTN_Click(object sender, EventArgs e)
         {
-            GirisForm girisForm = new GirisForm();
+            var girisForm = Program.ServiceProvider.GetRequiredService<GirisForm>();
             girisForm.Show();
             this.Hide();
         }
