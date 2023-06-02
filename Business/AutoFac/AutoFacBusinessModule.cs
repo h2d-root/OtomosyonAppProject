@@ -16,15 +16,11 @@ namespace Business.AutoFac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Form1>().AsSelf();
-            builder.RegisterType<MusteriManager>().As<IMusteriService>().PreserveExistingDefaults();
-
-
-            builder.RegisterType<UrunIslemForm>().AsSelf();
-            builder.RegisterType<UrunManager>().As<IUrunService>().PreserveExistingDefaults();
-            //builder.RegisterType<TaksitManager>().As<ITaksitService>();
-            //builder.RegisterType<SatisManager>().As<ISatisService>();
-            //builder.RegisterType<OdemeManager>().As<IOdemeService>();
+            builder.RegisterType<MusteriManager>().As<IMusteriService>();
+            builder.RegisterType<UrunManager>().As<IUrunService>();
+            builder.RegisterType<TaksitManager>().As<ITaksitService>();
+            builder.RegisterType<SatisManager>().As<ISatisService>();
+            builder.RegisterType<OdemeManager>().As<IOdemeService>();
 
             builder.RegisterType<MusteriDal>().As<IMusteriDal>();
             builder.RegisterType<UrunDal>().As<IUrunDal>();
