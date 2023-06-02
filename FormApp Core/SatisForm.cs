@@ -8,17 +8,19 @@ namespace FormApp_Core
         IMusteriService _musteriManager;
         ITaksitService _taksitManager;
         IUrunService _urunManager;
+        IOdemeService _odemeManager;
         ISatisService _satisManager;
         public SatisForm()
         {
             InitializeComponent();
         }
 
-        public SatisForm(IMusteriService musteriManager, ITaksitService taksitManager, IUrunService urunManager, ISatisService satisManager)
+        public SatisForm(IMusteriService musteriManager, ITaksitService taksitManager, IUrunService urunManager, IOdemeService odemeManager, ISatisService satisManager)
         {
             _musteriManager = musteriManager;
             _taksitManager = taksitManager;
             _urunManager = urunManager;
+            _odemeManager = odemeManager;
             _satisManager = satisManager;
         }
 

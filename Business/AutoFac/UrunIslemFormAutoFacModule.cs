@@ -10,8 +10,9 @@ namespace Business.AutoFac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<UrunManager>().As<IUrunService>().PreserveExistingDefaults();
-            builder.RegisterType<UrunDal>().As<IUrunDal>().PreserveExistingDefaults();
+            
+            builder.RegisterType<UrunManager>().As<IUrunService>();
+            builder.RegisterType<UrunDal>().As<IUrunDal>();
             
         }
     }

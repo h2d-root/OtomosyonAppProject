@@ -1,8 +1,4 @@
 using Business.Abstract;
-using Business.Concrete;
-using DataAccess;
-using DataAccess.Abstract;
-using DataAccess.Concrete;
 using Entities.Concrete;
 
 namespace FormApp_Core

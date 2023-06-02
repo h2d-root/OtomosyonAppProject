@@ -1,7 +1,5 @@
 using Autofac;
-using Business.Abstract;
 using Business.AutoFac;
-using Business.Concrete;
 using DataAccess;
 
 namespace FormApp_Core
@@ -20,13 +18,13 @@ namespace FormApp_Core
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
 
-            //var builder = new ContainerBuilder();
-            //builder.RegisterModule(new AutoFacBusinessModule());
+            var builder = new ContainerBuilder();
+            builder.RegisterModule(new MyModule());
 
+            var container = builder.Build();
 
-            //var container = builder.Build();
-
-            //var mainForm = container.Resolve<GirisForm>();
+            var mainForm = container.Resolve<MainForm>(); // Ana formunuzun türünü belirtin
+            var mainForm2 = container.Resolve<MainForm2>();
 
             Application.Run(new GirisForm());
         }
