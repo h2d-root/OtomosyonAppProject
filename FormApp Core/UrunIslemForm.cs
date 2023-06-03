@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Service;
 using Entities.Concrete;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -28,6 +29,7 @@ namespace FormApp_Core
         public void Yenile()
         {
             UrunlerDGV.DataSource = _urunManager.GetAll();
+            AppInfo.UrunlerList = _urunManager.GetAll();
         }
         public Urun Esitle()
         {
@@ -154,6 +156,43 @@ namespace FormApp_Core
         {
             Urun urun = _urunManager.GetLastData();
             EsitleTers(urun);
+        }
+
+        private void geriBTN_Click(object sender, EventArgs e)
+        {
+            Urun urun;
+            int mevcutId = AppInfo.UrunlerList.FindIndex(x => x.Id == Guid.Parse(BarkodNoTB.Text));
+            int geriId = mevcutId - 1;
+            if (geriId >AppInfo.UrunlerList.Count)
+            {
+            urun = AppInfo.UrunlerList[geriId];
+            EsitleTers(urun);
+
+            }
+            else
+            {
+                urun = _urunManager.GetFirstData();
+                EsitleTers(urun);
+            }
+        }
+
+        private void IleriBTN_Click(object sender, EventArgs e)
+        {
+
+            Urun urun;
+            int mevcutId = AppInfo.UrunlerList.FindIndex(x => x.Id == Guid.Parse(BarkodNoTB.Text));
+            int ileriId = mevcutId + 1;
+            if (ileriId < AppInfo.UrunlerList.Count)
+            {
+                urun = AppInfo.UrunlerList[ileriId];
+                EsitleTers(urun);
+
+            }
+            else
+            {
+                urun = _urunManager.GetLastData();
+                EsitleTers(urun);
+            }
         }
     }
 }

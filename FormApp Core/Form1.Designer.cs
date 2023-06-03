@@ -188,6 +188,7 @@
             geriBTN.TabIndex = 2;
             geriBTN.Text = "<";
             geriBTN.UseVisualStyleBackColor = true;
+            geriBTN.Click += geriBTN_Click;
             // 
             // IlkKayitBTN
             // 
@@ -217,6 +218,7 @@
             IleriBTN.TabIndex = 4;
             IleriBTN.Text = ">";
             IleriBTN.UseVisualStyleBackColor = true;
+            IleriBTN.Click += IleriBTN_Click;
             // 
             // YeniKayitBTN
             // 

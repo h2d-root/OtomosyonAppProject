@@ -1,4 +1,5 @@
 using Business.Abstract;
+using Business.Service;
 using Entities.Concrete;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,6 +25,7 @@ namespace FormApp_Core
         public void Yenile()
         {
             MusterilerDGV.DataSource = _musteriManager.GetAll();
+            AppInfo.MusterilerList = _musteriManager.GetAll();
         }
         public void ClearGB()
         {
@@ -129,7 +131,45 @@ namespace FormApp_Core
         private void SonKayitBTN_Click(object sender, EventArgs e)
         {
             var result = _musteriManager.GetLastData();
-            EsitleTers(result); 
+            EsitleTers(result);
+        }
+
+        private void geriBTN_Click(object sender, EventArgs e)
+        {
+            Musteri musteri;
+            int mevcutId = AppInfo.MusterilerList.FindIndex(x => x.Id == Convert.ToInt32(MusteriNoTB.Text));
+            int geriId = mevcutId - 1;
+            if (mevcutId > 0)
+            {
+                musteri = AppInfo.MusterilerList[geriId];
+                EsitleTers(musteri);
+            }
+            else
+            {
+                var result = _musteriManager.GetFirstData();
+                EsitleTers(result);
+            }
+
+        }
+
+        private void IleriBTN_Click(object sender, EventArgs e)
+        {
+            Musteri musteri;
+            int mevcutId = AppInfo.MusterilerList.FindIndex(x => x.Id == Convert.ToInt32(MusteriNoTB.Text));
+            int ileriId = mevcutId + 1;
+            if (ileriId < AppInfo.MusterilerList.Count)
+            {
+                musteri = AppInfo.MusterilerList[ileriId];
+                EsitleTers(musteri);
+            }
+            else
+            {
+                var result = _musteriManager.GetLastData();
+                EsitleTers(result);
+            }
+
+
+
         }
     }
 }
