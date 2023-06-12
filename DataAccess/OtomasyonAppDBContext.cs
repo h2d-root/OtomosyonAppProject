@@ -10,9 +10,9 @@ namespace DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=OtomasyonAppDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseNpgsql(@"Host=77.92.151.188;Port=5432;Database=OtomasyonDb;Username=postgres;Password=Hasanvemustafa.");
         }
-
+        //;
         public DbSet<Musteri> Musteriler { get; set; }
         public DbSet<Satis> Satislar { get; set; }
         public DbSet<Taksit> Taksitler { get; set; }
