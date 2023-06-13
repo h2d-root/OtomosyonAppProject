@@ -55,8 +55,8 @@ namespace Core.DataAccess.EntityFramework
             using (TContext context = new TContext())
             {
                 return filter == null
-                    ? context.Set<TEntitiy>().ToList()
-                    : context.Set<TEntitiy>().Where(filter).ToList();
+                    ? context.Set<TEntitiy>().OrderByDescending(r=> r).ToList()
+                    : context.Set<TEntitiy>().Where(filter).OrderByDescending(c =>c).ToList();
             }
         }
 
